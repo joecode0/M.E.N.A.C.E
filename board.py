@@ -10,7 +10,7 @@ class Board(object):
         Args:
             player (int): Returns player: 1 = Player 1, 2 = Player 2
         Returns:
-            [int]: Returns winner. Either 0: Game Unfinished, 1: Player 1, 2: Player 2, 3: Draw
+            Winner (int): 0 = Game Unfinished, 1 = Player 1, 2 = Player 2, 3 = Draw
         """
 
         if self.moves_count > 4:
@@ -50,3 +50,22 @@ class Board(object):
                 self.finished = True
                 return 3
         return 0
+
+    def play_move(self, pos, player):
+        """Attempts to put [player] into [pos] of [self.state]
+        Args:
+            pos (int): Index of Board position to play in
+            player (int): Either Player 1 or Player 2
+        Raises:
+            InvalidMove: Returns list of valid moves as indices into state
+        Returns:
+           Winner (int): 0 = Game Unfinished, 1 = Player 1, 2 = Player 2, 3 = Draw
+        """
+        if self.state[pos] == 0:
+            self.state[pos] = player
+            self.moves_count += 1
+            return self.check_finished(player)
+        # TODO: Implement following code
+        # else:
+        #     valid_moves = self.get_valid_moves()
+        #     raise InvalidMove(valid_moves)
