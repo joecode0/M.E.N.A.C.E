@@ -1,3 +1,6 @@
+from errors import InvalidMoveError
+
+
 class Board(object):
 
     def __init__(self):
@@ -65,7 +68,9 @@ class Board(object):
             self.state[pos] = player
             self.moves_count += 1
             return self.check_finished(player)
-        # TODO: Implement following code
-        # else:
-        #     valid_moves = self.get_valid_moves()
-        #     raise InvalidMove(valid_moves)
+        else:
+            valid_moves = self.get_valid_moves()
+            raise InvalidMoveError(valid_moves)
+
+    def get_valid_moves(self):
+        return [i for i in range(9) if self.state[i] is 0]
