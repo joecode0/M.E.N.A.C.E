@@ -56,3 +56,23 @@ class Board(object):
 
     def get_valid_moves(self):
         return [i for i in range(9) if self.state[i] is 0]
+
+    def terminal_board_print(self, next_player):
+        print("Make your move Player {}...".format(next_player))
+        print()
+        padding = "     "
+        dashes = "---------"
+
+        print("{}---------------".format(padding))
+        print("{}|             |".format(padding))
+        print("{}|  {} | {} | {}  |".format(
+            padding, self.state[0], self.state[1], self.state[2]))
+        print("{}|  {}  |".format(padding, dashes))
+        print("{}|  {} | {} | {}  |".format(
+            padding, self.state[3], self.state[4], self.state[5]))
+        print("{}|  {}  |".format(padding, dashes))
+        print("{}|  {} | {} | {}  |".format(
+            padding, self.state[6], self.state[7], self.state[8]))
+
+        print("{}|             |".format(padding))
+        print("{}---------------".format(padding))
