@@ -1,3 +1,5 @@
 MENACE.code-workspace
 
 requirements.txt
+
+__pycache__
