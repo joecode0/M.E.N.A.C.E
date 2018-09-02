@@ -76,3 +76,6 @@ class Board(object):
 
         print("{}|             |".format(padding))
         print("{}---------------".format(padding))
+
+    def reset_board(self):
+        self.state = [0]*9
