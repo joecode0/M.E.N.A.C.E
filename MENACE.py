@@ -1,12 +1,14 @@
 from board import Board
 import utils as u
 
+INITIAL_MOVE_WEIGHT = 5
+
 
 class MENACE(object):
 
     def __init__(self, player):
         self.player = player
-        self.generate_new_data_dict()
+        self.data = self.generate_new_data_dict()
 
     def generate_new_data_dict(self):
         state_list = self.generate_all_possible_states()
@@ -14,8 +16,13 @@ class MENACE(object):
         data_dict = dict()
         for state in state_list:
             b = Board(state)
-            board_list.append(Board(state))
-            valid_moves = 5  # TODO
+            board_list.append(b)
+            valid_moves = b.get_valid_moves()
+            move_weight_dict = dict()
+            for move in valid_moves:
+                move_weight_dict[move] = INITIAL_MOVE_WEIGHT
+            data_dict[state] = move_weight_dict
+        return data_dict
 
     def generate_all_possible_states(self):
         all_states = []
