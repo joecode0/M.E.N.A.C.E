@@ -3,9 +3,13 @@ from errors import InvalidMoveError
 
 class Board(object):
 
-    def __init__(self):
-        self.state = [0]*9
-        self.moves_count = 0
+    def __init__(self, state=""):
+        if state == "":
+            self.state = [0]*9
+            self.moves_count = 0
+        else:
+            self.state = state
+            self.moves_count = self.calculate_moves_count()
 
     def check_finished(self, p):
         """Quick Function to check if game is finished (3 in a row or draw)
@@ -79,3 +83,7 @@ class Board(object):
 
     def reset_board(self):
         self.state = [0]*9
+
+    def calculate_moves_count(self):
+        s = self.state
+        return len([i for i in range(9) if not s[i] is 0])
